@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wsxter.dao.AttendMapper">
+    <select id="findTotalCountbyUserId" parameterType="Integer" resultType="int">
+      select count(*) from attendquestion where user_id = #{user_id}
+    </select>
+    <select id="findByPageUser" resultType="Attendquestion" parameterType="Integer">
+        select question_id from attendquestion where user_id = #{user_id}
+    </select>
+    <select id="attendQuery" parameterType="map" resultType="Attendquestion">
+        select * from attendquestion where question_id = #{question_id} and user_id = #{user_id}
+    </select>
+    <insert id="attendQues" parameterType="Attendquestion" >
+        insert into attendquestion (question_id,user_id) VALUES (#{question_id} ,#{user_id})
+    </insert>
+    <update id="delAttend" parameterType="Attendquestion">
+        delete from attendquestion where question_id = #{question_id} and user_id = #{user_id}
+    </update>
+</mapper>
